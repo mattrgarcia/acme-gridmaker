@@ -1,0 +1,64 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <h1>Acme Grid Maker</h1>
+    <form id="gridForm">
+      <input name="rows"/>
+      <input name="columns"/>
+      <button id="createGrid">Make Grid</button>
+    </form>
+    <div id="grid-container"></div>
+  </body>
+  <script>
+    const gridForm = document.querySelector('#gridForm');
+    const rowInput = document.querySelector('[name="rows"]');
+    const columnInput = document.querySelector('[name="columns"]');
+
+    rowInput.addEventListener('keyup', (ev)=>{
+      console.log(rowInput.value);
+    });
+
+    columnInput.addEventListener('keyup', (ev)=>{
+      console.log(columnInput.value);
+    });
+
+    const generateNxN = ()=>{
+      const row = rowInput.value;
+      const col = columnInput.value;
+      const rows = [];
+
+      for(let i = 0; i<row.length; i++){
+        const row = [];
+        rows.push(row);
+        for(let j = 0; j<col.length; j++){
+          row.push('');
+        }
+      }
+      console.log(rows);
+    return rows;
+    };
+
+    const generateHTML = (rows) => {
+      return rows.map(row=>
+        `<div class="row">${row.map(cell=>`<div class="cell">${cell}</div>`).join('')}</div>`
+      ).join('');
+    }
+
+    gridForm.addEventListener('submit', (ev)=>{
+      ev.preventDefault();
+      generateNxN();
+      render();
+
+    })
+
+    const data = generateNxN();
+    let html = generateHTML(data);
+
+    const render = ()=>{
+      const grid = document.querySelector('#grid-container');
+      grid.innerHTML= html;
+    }
+    render();
+  </script>
+</html>
