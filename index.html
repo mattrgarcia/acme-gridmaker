@@ -47,6 +47,8 @@
 
     gridForm.addEventListener('submit', (ev)=>{
       ev.preventDefault();
+      const grid = document.querySelector('#grid-container');
+      grid.innerHTML= html;
       generateNxN();
       render();
 
